@@ -24,6 +24,6 @@
 
 @layer base {
   body {
-    @apply bg-secondary font-google text-white;
+    @apply bg-secondary-200 font-google text-white;
   }
 }

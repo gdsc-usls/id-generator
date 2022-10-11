@@ -5,11 +5,11 @@ import Hover from "react-3d-hover";
 const Home: NextPage = () => {
   return (
     <section className="flex flex-col items-center">
-      <div className="w-[350px] mx-auto w-full font-semibold text-5xl mb-8">
+      <div className="w-[350px] mx-auto font-semibold text-5xl mb-8">
         <h1>SHEESH,</h1>
-        <div className='relative'>
-        <h1 className='z-10 relative'>Here&apos;s your ID!</h1>
-          <div className='w-[190px] h-[12px] bg-primary absolute right-1 bottom-1' />
+        <div className="relative">
+          <h1 className="z-10 relative">Here&apos;s your ID!</h1>
+          <div className="w-[190px] h-[12px] bg-primary absolute right-1 bottom-1" />
         </div>
       </div>
 

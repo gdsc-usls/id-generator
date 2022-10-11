@@ -5,7 +5,10 @@ module.exports = {
     extend: {
       colors: {
         primary: "#1464ff",
-        secondary: "#111111",
+        secondary: {
+          100: "#ACACAC",
+          200: "#111111",
+        },
       },
       fontFamily: {
         google: ["Google-Sans", "sans-serif"],
