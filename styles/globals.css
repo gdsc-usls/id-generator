@@ -1,3 +1,5 @@
+@import "utils.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,4 +20,10 @@
   font-family: "Google-Sans";
   src: url("/fonts/GoogleSans-Bold.woff2");
   font-weight: 700;
+}
+
+@layer base {
+  body {
+    @apply bg-secondary font-google text-white;
+  }
 }

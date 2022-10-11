@@ -1,8 +1,10 @@
 import React from "react";
+import { Navbar } from "./Navbar";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="mx-auto min-h-screen w-[90%] max-w-screen-lg font-google xl:w-full">
+    <main className="mx-auto min-h-screen w-[90%] max-w-screen-lg xl:w-full">
+      <Navbar />
       {children}
     </main>
   );
