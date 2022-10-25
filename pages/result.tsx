@@ -1,5 +1,7 @@
+import React from "react";
 import type { NextPage } from "next";
 import Hover from "react-3d-hover";
+
 import { Card } from "@/components";
 
 const Result: NextPage = () => {

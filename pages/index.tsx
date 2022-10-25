@@ -1,10 +1,11 @@
+import React from "react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const { push } = useRouter();
   return (
-    <section>
+    <section className='max-w-screen-sm mx-auto'>
       <div className="font-semibold text-5xl mb-8 self-start">
         <h1>Enter your USLS</h1>
         <div className="relative">
@@ -25,14 +26,11 @@ const Home: NextPage = () => {
           required
           minLength={7}
           maxLength={7}
-          className="outline-none rounded-md border border-secondary-100 px-4 py-3 bg-transparent"
+          className="input"
           placeholder="Student ID"
         />
 
-        <button
-          type="submit"
-          className="bg-primary rounded-md px-6 flex-none py-3 outline-none"
-        >
+        <button type="submit" className="fill-btn bg-primary flex-none">
           Generate ID
         </button>
       </form>
