@@ -31,7 +31,15 @@ const Member = () => {
       });
   }, [cardRef]);
 
-  if (!loading && !data.firstName) {
+  if (loading) {
+    return (
+      <div className="min-h-screen grid place-items-center">
+        <span className="loader" />
+      </div>
+    );
+  }
+
+  if (!data.firstName) {
     push("/404");
   }
 
