@@ -9,8 +9,8 @@ import { Card } from "@/components";
 import { db } from "@/config/firebase";
 
 const Member = () => {
-  const { query } = useRouter();
-  const [data] = useDoc<Member>(doc(db, `members/${query.id}`));
+  const { query, push } = useRouter();
+  const [data, loading] = useDoc<Member>(doc(db, `members/${query.id}`));
 
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -31,13 +31,15 @@ const Member = () => {
       });
   }, [cardRef]);
 
+  if (!loading && !data.firstName) {
+    push("/404");
+  }
+
   return (
     <section className="flex flex-col items-center w-[350px] mx-auto">
-      <div className="font-semibold text-5xl mb-8 self-start">
-        <div className="relative">
-          <h1 className="z-10 relative">Here&apos;s your ID!</h1>
-          <div className="w-[190px] h-[12px] bg-primary absolute -right-2 bottom-1" />
-        </div>
+      <div className="relative font-semibold text-5xl mb-8 self-start">
+        <h1 className="z-10 relative">Here&apos;s your ID!</h1>
+        <div className="w-[190px] h-[12px] bg-primary absolute -right-2 bottom-1" />
       </div>
 
       <div ref={cardRef}>
