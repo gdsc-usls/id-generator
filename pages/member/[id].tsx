@@ -1,11 +1,17 @@
 import React, { useRef, useCallback } from "react";
-import Hover from "react-3d-hover";
-import type { NextPage } from "next";
+import { doc } from "firebase/firestore";
+import { useRouter } from "next/router";
 import { toPng } from "html-to-image";
+import Hover from "react-3d-hover";
 
+import { useDoc } from "@/hooks";
 import { Card } from "@/components";
+import { db } from "@/config/firebase";
 
-const Result: NextPage = () => {
+const Member = () => {
+  const { query } = useRouter();
+  const [data] = useDoc<Member>(doc(db, `members/${query.id}`));
+
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = useCallback(() => {
@@ -28,7 +34,6 @@ const Result: NextPage = () => {
   return (
     <section className="flex flex-col items-center w-[350px] mx-auto">
       <div className="font-semibold text-5xl mb-8 self-start">
-        <h1>SHEESH,</h1>
         <div className="relative">
           <h1 className="z-10 relative">Here&apos;s your ID!</h1>
           <div className="w-[190px] h-[12px] bg-primary absolute -right-2 bottom-1" />
@@ -38,12 +43,12 @@ const Result: NextPage = () => {
       <div ref={cardRef}>
         <div className="hidden lg:block">
           <Hover perspective={900}>
-            <Card />
+            <Card data={data} />
           </Hover>
         </div>
 
         <div className="lg:hidden">
-          <Card />
+          <Card data={data} />
         </div>
       </div>
 
@@ -58,4 +63,4 @@ const Result: NextPage = () => {
   );
 };
 
-export default Result;
+export default Member;

@@ -1,16 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 
-export const Card = () => {
+export const Card = ({ data }: { data: Member }) => {
   return (
     <div className="relative">
       <div className="absolute left-0 right-0 top-32 mx-auto text-center text-[#676c72]">
-        <p className="text-3xl font-bold">Josh Daniel</p>
-        <p className="text-xl">Bañares</p>
-        <p className="mt-12 text-lg">
-          Technology <br />
-          Co-Lead
-        </p>
+        <p className="text-3xl font-bold">{data.firstName}</p>
+        <p className="text-xl">{data.lastName}</p>
+        <p className="mt-12 text-lg">{data.position}</p>
       </div>
 
       <img

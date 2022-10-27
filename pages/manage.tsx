@@ -1,13 +1,38 @@
 import React, { useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
 import type { NextPage } from "next";
+import toast from "react-hot-toast";
+
+import { db } from "@/config/firebase";
 
 const Manage: NextPage = () => {
   const [studentId, setStudentId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  const handleAdd: React.FormEventHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload: Omit<Member, "id"> = {
+        firstName,
+        lastName,
+        position: "Member",
+      };
+
+      await setDoc(doc(db, "members", studentId), payload);
+      toast.success("Member Added!");
+
+      setStudentId("");
+      setFirstName("");
+      setLastName("");
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
   return (
-    <section className="max-w-screen-sm mx-auto">
+    <form onSubmit={handleAdd} className="max-w-screen-sm mx-auto">
       <h1 className="mb-6 text-5xl font-bold">Add Member</h1>
       <div className="grid grid-cols-2 gap-4">
         <input
@@ -44,7 +69,7 @@ const Manage: NextPage = () => {
           Add Member
         </button>
       </div>
-    </section>
+    </form>
   );
 };
 
