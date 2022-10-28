@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         />
 
         <button type="submit" className="fill-btn bg-primary flex-none">
-          Generate ID
+          Locate ID
         </button>
       </form>
     </section>
