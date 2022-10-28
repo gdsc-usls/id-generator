@@ -8,6 +8,7 @@ export const Navbar = () => {
       <Link href="/">
         <div className="flex items-center space-x-2 cursor-pointer">
           <Image
+            alt="GDSC Logo"
             src="/assets/gdsc_logo.png"
             objectFit="contain"
             height={40}

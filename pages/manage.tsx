@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import type { NextPage } from "next";
 import toast from "react-hot-toast";
+import { z } from "zod";
 
 import { db } from "@/config/firebase";
+import { studentIdFromEmail } from "@/utils/helpers";
 
 interface RawMember {
   name: string;
@@ -26,11 +28,11 @@ const Manage: NextPage = () => {
       const payload: Omit<Member, "id"> = {
         firstName,
         lastName,
-        position: "Member",
+        position,
       };
 
       await setDoc(doc(db, "members", studentId), payload);
-      toast.success("Member Added!");
+      toast.success("Member added");
 
       setStudentId("");
       setFirstName("");
@@ -41,20 +43,39 @@ const Manage: NextPage = () => {
   };
 
   const handlePreview = () => {
-    const _parsedMembers = JSON.parse(members);
-    setParsedMembers(_parsedMembers.members);
+    const schema = z.object({
+      name: z.string(),
+      email: z.string(),
+      position: z.string(),
+    });
+
+    try {
+      let invalid = false;
+      const _parsedMembers: RawMember[] = JSON.parse(members).members;
+      _parsedMembers.forEach((m) => {
+        const data = schema.safeParse(m);
+        if (!data.success) {
+          toast.error("Contains invalid data");
+          invalid = true;
+          return;
+        }
+      });
+
+      setParsedMembers(invalid ? [] : _parsedMembers);
+    } catch {
+      toast.error("Invalid JSON format");
+    }
   };
 
   const handleImport = () => {
     try {
       parsedMembers.forEach(async (member) => {
-        const studentId = member.email.split("@")[0].substring(1);
         const fullName = member.name.split(", ");
         const firstName = fullName[1];
         const lastName = fullName[0];
 
         try {
-          await setDoc(doc(db, `members/${studentId}`), {
+          await setDoc(doc(db, `members/${studentIdFromEmail(member.email)}`), {
             firstName,
             lastName,
             position: member.position,
