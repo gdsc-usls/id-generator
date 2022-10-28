@@ -25,6 +25,9 @@ const Manage: NextPage = () => {
   const [addDialog, setAddDialiog] = useState(false);
   const [importDialog, setImportDialog] = useState(false);
 
+  const [authorized, setAuthorized] = useState(false);
+  const [password, setPassword] = useState("");
+
   const handleAdd = async () => {
     try {
       const payload: Omit<Member, "id"> = {
@@ -98,6 +101,35 @@ const Manage: NextPage = () => {
       toast.error(err.message);
     }
   };
+
+  const handleLogin: React.FormEventHandler = (e) => {
+    e.preventDefault();
+
+    if (password === process.env.NEXT_PUBLIC_PASSWORD) {
+      setAuthorized(true);
+      toast.success("Login successful");
+    } else {
+      toast.error("Incorrect password");
+    }
+  };
+
+  if (!authorized) {
+    return (
+      <form onSubmit={handleLogin} className="flex space-x-3">
+        <input
+          required
+          type="password"
+          className="input"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="primary-btn">
+          Login
+        </button>
+      </form>
+    );
+  }
 
   return (
     <form
