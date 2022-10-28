@@ -5,7 +5,8 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 
 import { db } from "@/config/firebase";
-import { studentIdFromEmail } from "@/utils/helpers";
+import { fromFullName, studentIdFromEmail } from "@/utils/helpers";
+import { ConfirmDialog } from "@/components/Dialog";
 
 interface RawMember {
   name: string;
@@ -21,9 +22,10 @@ const Manage: NextPage = () => {
   const [members, setMembers] = useState("");
   const [parsedMembers, setParsedMembers] = useState<RawMember[]>([]);
 
-  const handleAdd: React.FormEventHandler = async (e) => {
-    e.preventDefault();
+  const [addDialog, setAddDialiog] = useState(false);
+  const [importDialog, setImportDialog] = useState(false);
 
+  const handleAdd = async () => {
     try {
       const payload: Omit<Member, "id"> = {
         firstName,
@@ -34,9 +36,14 @@ const Manage: NextPage = () => {
       await setDoc(doc(db, "members", studentId), payload);
       toast.success("Member added");
 
-      setStudentId("");
-      setFirstName("");
-      setLastName("");
+      setAddDialiog(false);
+
+      setTimeout(() => {
+        setStudentId("");
+        setFirstName("");
+        setLastName("");
+        setPosition("");
+      }, 500);
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -62,6 +69,7 @@ const Manage: NextPage = () => {
       });
 
       setParsedMembers(invalid ? [] : _parsedMembers);
+      setImportDialog(true);
     } catch {
       toast.error("Invalid JSON format");
     }
@@ -70,9 +78,7 @@ const Manage: NextPage = () => {
   const handleImport = () => {
     try {
       parsedMembers.forEach(async (member) => {
-        const fullName = member.name.split(", ");
-        const firstName = fullName[1];
-        const lastName = fullName[0];
+        const { firstName, lastName } = fromFullName(member.name);
 
         try {
           await setDoc(doc(db, `members/${studentIdFromEmail(member.email)}`), {
@@ -95,9 +101,62 @@ const Manage: NextPage = () => {
 
   return (
     <form
-      onSubmit={handleAdd}
+      onSubmit={(e) => {
+        e.preventDefault();
+        setAddDialiog(true);
+      }}
       className="max-w-screen-sm mx-auto flex flex-col"
     >
+      <ConfirmDialog
+        isOpen={addDialog}
+        setIsOpen={setAddDialiog}
+        handleConfirm={handleAdd}
+        content={
+          <div>
+            <p className="border-b pb-2 border-secondary-100">
+              Are you sure you want to add this member?
+            </p>
+            <div className="mt-6">
+              <p>Student ID - {studentId}</p>
+              <p>
+                Full Name - {firstName} {lastName}
+              </p>
+              <p>Position - {position}</p>
+            </div>
+          </div>
+        }
+      />
+
+      <ConfirmDialog
+        isOpen={importDialog}
+        setIsOpen={setImportDialog}
+        handleConfirm={handleImport}
+        content={
+          <div>
+            <p className="border-b pb-2 border-secondary-100">
+              Total members to be added: {parsedMembers.length}
+            </p>
+            <div className="mt-6 bg-[#2a2a2a] p-4 rounded max-h-[300px] overflow-y-scroll">
+              <div>
+                {parsedMembers.map((m) => {
+                  const { firstName, lastName } = fromFullName(m.name);
+
+                  return (
+                    <div key={m.email} className="mb-6">
+                      <p>{studentIdFromEmail(m.email)}</p>
+                      <p>
+                        {firstName} {lastName}
+                      </p>
+                      <p>{m.position}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        }
+      />
+
       <h1 className="mb-6 text-5xl font-bold">Add Member</h1>
       <div className="grid grid-cols-2 gap-4">
         <input
@@ -166,30 +225,6 @@ const Manage: NextPage = () => {
       >
         Preview Data
       </button>
-
-      {parsedMembers.length > 0 && (
-        <>
-          <div>
-            {parsedMembers.map((m) => {
-              return (
-                <div key={m.email} className="mb-6">
-                  <p>{m.name}</p>
-                  <p>{m.email}</p>
-                  <p>{m.position}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <button
-            type="button"
-            onClick={handleImport}
-            className="primary-btn self-end mt-4"
-          >
-            Import Data
-          </button>
-        </>
-      )}
     </form>
   );
 };

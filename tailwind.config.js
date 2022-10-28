@@ -8,6 +8,7 @@ module.exports = {
         secondary: {
           100: "#ACACAC",
           200: "#111111",
+          300: "#1c1c1c",
         },
       },
       fontFamily: {

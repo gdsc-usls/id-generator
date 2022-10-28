@@ -36,4 +36,8 @@
   .input {
     @apply outline-none rounded-md border border-secondary-100 px-4 py-3 bg-transparent w-full;
   }
+
+  .dialog-card {
+    @apply border-[#505050] bg-secondary-300 rounded-2xl border-2 px-7 py-5;
+  }
 }
