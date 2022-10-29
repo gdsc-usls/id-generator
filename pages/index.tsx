@@ -8,12 +8,9 @@ const Home: NextPage = () => {
 
   return (
     <section className="max-w-screen-sm mx-auto">
-      <div className="font-semibold text-5xl mb-8 self-start">
-        <h1>Enter your USLS</h1>
-        <div className="relative">
-          <h1 className="z-10 relative">Student ID</h1>
-          <div className="w-[250px] h-[12px] bg-primary absolute -left-1 bottom-1" />
-        </div>
+      <div className="relative font-semibold text-4xl mb-4 self-start">
+        <h1 className="z-10 relative">Enter your Student ID</h1>
+        <div className="w-[190px] h-[8px] bg-primary absolute left-[185px] bottom-1" />
       </div>
 
       <form
