@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Menu } from "./Menu";
 
 export const Navbar = () => {
   return (
@@ -17,6 +18,8 @@ export const Navbar = () => {
           <p>GDSC - USLS</p>
         </div>
       </Link>
+
+      <Menu />
     </nav>
   );
 };

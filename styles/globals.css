@@ -38,6 +38,10 @@
   }
 
   .dialog-card {
-    @apply border-[#505050] bg-secondary-300 rounded-2xl border-2 px-7 py-5;
+    @apply border-secondary-400 bg-secondary-300 rounded-2xl border-2 px-7 py-5;
+  }
+
+  .menu-item {
+    @apply flex cursor-pointer items-center space-x-2 rounded p-3 text-sm;
   }
 }

@@ -72,7 +72,10 @@ const Manage: NextPage = () => {
       });
 
       setParsedMembers(invalid ? [] : _parsedMembers);
-      setImportDialog(true);
+
+      if (!invalid) {
+        setImportDialog(true);
+      }
     } catch {
       toast.error("Invalid JSON format");
     }
