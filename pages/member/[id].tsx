@@ -39,7 +39,7 @@ const Member = () => {
     );
   }
 
-  if (!data.firstName) {
+  if (!data.position) {
     push("/404");
   }
 
