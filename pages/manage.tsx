@@ -61,7 +61,7 @@ const Manage: NextPage = () => {
 
     try {
       let invalid = false;
-      const _parsedMembers: RawMember[] = JSON.parse(members).members;
+      const _parsedMembers: RawMember[] = JSON.parse(members);
       _parsedMembers.forEach((m) => {
         const data = schema.safeParse(m);
         if (!data.success) {
@@ -118,7 +118,10 @@ const Manage: NextPage = () => {
 
   if (!authorized) {
     return (
-      <form onSubmit={handleLogin} className="flex space-x-3">
+      <form
+        onSubmit={handleLogin}
+        className="flex space-x-3 max-w-screen-sm mx-auto"
+      >
         <input
           required
           type="password"
