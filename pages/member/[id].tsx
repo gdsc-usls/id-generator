@@ -33,7 +33,7 @@ const Member = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen grid place-items-center">
+      <div className="flex justify-center mt-52">
         <span className="loader" />
       </div>
     );
