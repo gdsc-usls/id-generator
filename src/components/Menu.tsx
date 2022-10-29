@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FaGithub, FaCode } from "react-icons/fa";
+import { Popover, Transition } from "@headlessui/react";
 
 export const Menu = () => {
   return (
@@ -21,6 +21,8 @@ export const Menu = () => {
       >
         <Popover.Panel className="top-8 right-0 border-secondary-400 bg-secondary-300 absolute flex w-[140px] flex-col space-y-2 rounded border-2 p-2">
           <a
+            target="_blank"
+            rel="noreferrer noopener"
             href="https://docs.google.com/forms/d/e/1FAIpQLSc5bp91hgi-M8RTSdclP9jDHdQq5HRdIt6ZogfOZtXT4IWP3Q/viewform"
             className="menu-item"
           >
@@ -28,9 +30,11 @@ export const Menu = () => {
             <p>Join Us</p>
           </a>
 
-          <div className="bg-secondary-400 h-[2px]" />
+          <div className="bg-secondary-400 h-[2px] rounded-md" />
 
           <a
+            target="_blank"
+            rel="noreferrer noopener"
             href="https://github.com/gdsc-usls/gdsc-usls-id"
             className="menu-item"
           >
