@@ -97,8 +97,13 @@ const Manage: NextPage = () => {
         }
       });
 
-      setParsedMembers([]);
-      setMembers("");
+      setImportDialog(false);
+
+      setTimeout(() => {
+        setParsedMembers([]);
+        setMembers("");
+      }, 500);
+
       toast.success("Members added");
     } catch (err: any) {
       toast.error(err.message);
