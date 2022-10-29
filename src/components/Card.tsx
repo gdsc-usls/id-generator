@@ -26,9 +26,7 @@ export const Card = ({ data }: { data: Member }) => {
 
       <img
         className="w-full object-contain rounded-md pointer-events-none"
-        src={
-          position[1] == "Executive" ? "/assets/id_2.png" : "/assets/id_1.png"
-        }
+        src={position[0] == "Chief" ? "/assets/id_2.png" : "/assets/id_1.png"}
         alt="id"
       />
     </div>
