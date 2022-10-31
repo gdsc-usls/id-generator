@@ -15,7 +15,7 @@ export const Navbar = () => {
             height={40}
             width={70}
           />
-          <p>GDSC - USLS</p>
+          <p>GDSC USLS</p>
         </div>
       </Link>
 

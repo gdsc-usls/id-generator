@@ -5,7 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 
 export const Menu = () => {
   return (
-    <Popover className="relative">
+    <Popover className="relative z-50">
       <Popover.Button className="text-2xl outline-none">
         <HiMenuAlt3 className="transition-colors hover:text-gray-300" />
       </Popover.Button>
