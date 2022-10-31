@@ -2,7 +2,7 @@
 import React from "react";
 
 export const Card = ({ data }: { data?: Member }) => {
-  const position = data?.position && data?.position.split(" ") || [];
+  const position = (data?.position && data?.position.split("*")) || [];
 
   return (
     <div className="relative">
@@ -10,26 +10,17 @@ export const Card = ({ data }: { data?: Member }) => {
         <p className="text-3xl font-bold">{data?.firstName}</p>
         <p className="text-xl">{data?.lastName}</p>
 
-        {position && (
-          <div className="mt-12 text-lg">
-            {position.length >= 3 ? (
-              <>
-                <p>
-                  {position[0]} {position[1]}
-                </p>
-                <p>{position[2]}</p>
-              </>
-            ) : (
-              <p>{data?.position}</p>
-            )}
-          </div>
-        )}
+        <div className="mt-12 text">
+          {position.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
       </div>
 
       <img
         className="w-full object-contain rounded-md pointer-events-none"
         src={
-          position && position[0] == "Chief"
+          position[0].includes("Chief")
             ? "/assets/id_2.png"
             : "/assets/id_1.png"
         }
