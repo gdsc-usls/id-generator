@@ -1,34 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## About
 
-## Getting Started
+[gdsc-usls-id](https://github.com/gdsc-usls/gdsc-usls-id) is an open-source project of [Google Developer Student Clubs - USLS](https://www.facebook.com/dsc.usls) that generates an ID badge for the official club members with their corresponding position.
 
-First, run the development server:
+### Preview
 
-```bash
-npm run dev
-# or
-yarn dev
+<div>
+
+<img src="https://user-images.githubusercontent.com/69457996/199033737-92f0f5da-6f9a-4223-9d1b-a930dc247ab8.png" width="250" />
+&nbsp;
+<img src="https://user-images.githubusercontent.com/69457996/199033752-a95535ec-d433-4b81-9d92-4fa1f1e3ed82.png" width="250" />
+
+</div>
+
+### Tech Stack
+- Next.js
+- Firebase
+- TypeScript
+- Tailwind CSS
+
+## Contributing
+
+If you like this project, consider giving it a star! Want to contribute? See [CODE_OF_CONDUCT.md](https://github.com/gdsc-usls/gdsc-usls-id/blob/main/CODE_OF_CONDUCT.md)
+
+1. Fork this [repository](https://github.com/gdsc-usls/gdsc-usls-id) and clone your fork.
+2. Create a new branch for your changes:
+
+```sh
+$ cd your_cloned_fork
+$ git checkout dev
+$ git checkout -b my-new-branch
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Create a [Firebase](https://firebase.google.com/) project & add a `Web` app.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+4. Create a `.env.local` file with this content:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+> Replace `VALUE` with your Firebase config.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+NEXT_PUBLIC_API_KEY=VALUE
+NEXT_PUBLIC_AUTH_DOMAIN=VALUE
+NEXT_PUBLIC_PROJECT_ID=VALUE
+NEXT_PUBLIC_STORAGE_BUCKET=VALUE
+NEXT_PUBLIC_MESSAGING_SENDER_ID=VALUE
+NEXT_PUBLIC_APP_ID=VALUE
+NEXT_PUBLIC_MEASUREMENT_ID=VALUE
 
-## Learn More
+NEXT_PUBLIC_PASSWORD=123456
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. To run locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+# Only use yarn as your package manager
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+$ yarn # install dependencies
+$ yarn dev # start local server
+```
 
-## Deploy on Vercel
+6. Visit `/manage` to add data & use `NEXT_PUBLIC_PASSWORD` to authenticate.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+7. Commit your changes and push your branch:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+$ git add .
+$ git commit -m "chore: some changes"
+$ git push origin HEAD
+```
+
+8. Submit a pull request on the `dev` branch. (resolve conflicts if present)
+
+## License
+
+Licensed under the [MIT license](https://github.com/gdsc-usls/gdsc-usls-id/blob/main/LICENSE).
