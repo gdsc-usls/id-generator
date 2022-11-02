@@ -5,8 +5,8 @@ import { toPng } from "html-to-image";
 import Hover from "react-3d-hover";
 
 import { useDoc } from "@/hooks";
-import { Card } from "@/components";
 import { db } from "@/config/firebase";
+import { Card, Error } from "@/components";
 
 const Member = () => {
   const { query, push } = useRouter();
@@ -40,7 +40,18 @@ const Member = () => {
   }
 
   if (!data.position) {
-    push("/404");
+    return (
+    <Error
+      content={
+        <>
+          <p>We could not generate your ID, did you make a typo? </p>
+          <p>
+            You need to be an official member in order to generate an ID badge.
+          </p>
+        </>
+      }
+    />
+    )
   }
 
   return (

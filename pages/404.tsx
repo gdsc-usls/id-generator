@@ -1,11 +1,12 @@
 import React from "react";
+import { Error } from "@/components";
 
 const Error404 = () => {
   return (
-    <section>
-      <h1 className="font-semibold text-5xl mb-4">Oops...</h1>
-      <p>We couldn&apos;t locate your ID, did you make a typo?</p>
-    </section>
+    <Error
+      code={404}
+      content={<p>The page you are looking for could not be found.</p>}
+    />
   );
 };
 
