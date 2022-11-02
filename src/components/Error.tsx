@@ -2,14 +2,14 @@ import React from "react";
 
 interface Props {
   code?: number;
-  content: React.ReactNode;
+  content: string;
 }
 
 export const Error = ({ code, content }: Props) => {
   return (
     <section>
       <h1 className="font-semibold text-5xl mb-4">Oops! {code}</h1>
-      {content}
+      <p>{content}</p>
       <a
         href="https://www.facebook.com/dsc.usls"
         target="_blank"

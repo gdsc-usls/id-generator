@@ -9,7 +9,7 @@ import { db } from "@/config/firebase";
 import { Card, Error } from "@/components";
 
 const Member = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const [data, loading] = useDoc<Member>(doc(db, `members/${query.id}`));
 
   const cardRef = useRef<HTMLDivElement>(null);
@@ -41,17 +41,8 @@ const Member = () => {
 
   if (!data.position) {
     return (
-    <Error
-      content={
-        <>
-          <p>We could not generate your ID, did you make a typo? </p>
-          <p>
-            You need to be an official member in order to generate an ID badge.
-          </p>
-        </>
-      }
-    />
-    )
+      <Error content="We could not generate your ID, did you make a typo? You need to be an official member in order to generate an ID badge." />
+    );
   }
 
   return (
