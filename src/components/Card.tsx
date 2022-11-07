@@ -10,7 +10,7 @@ export const Card = ({ data }: { data?: Member }) => {
         <p className="text-3xl font-bold">{data?.firstName}</p>
         <p className="text-xl">{data?.lastName}</p>
 
-        <div className="mt-12 text">
+        <div className="mt-12 text tracking-wide">
           {position.map((p) => (
             <p key={p}>{p}</p>
           ))}

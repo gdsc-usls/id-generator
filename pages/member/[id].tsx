@@ -1,4 +1,5 @@
 import React, { useRef, useCallback } from "react";
+import { useReactToPrint } from "react-to-print";
 import { doc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { toPng } from "html-to-image";
@@ -6,13 +7,19 @@ import Hover from "react-3d-hover";
 
 import { useDoc } from "@/hooks";
 import { db } from "@/config/firebase";
-import { Card, Error } from "@/components";
+import { Card, Error, Output } from "@/components";
+import { HiDownload, HiPrinter } from "react-icons/hi";
 
 const Member = () => {
   const { query } = useRouter();
   const [data, loading] = useDoc<Member>(doc(db, `members/${query.id}`));
 
   const cardRef = useRef<HTMLDivElement>(null);
+  const printRef = useRef<HTMLDivElement>(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+  });
 
   const handleDownload = useCallback(() => {
     if (cardRef.current === null) {
@@ -49,7 +56,7 @@ const Member = () => {
     <section className="flex flex-col items-center w-[350px] mx-auto">
       <div className="relative font-semibold text-5xl mb-8 self-start">
         <h1 className="z-10 relative">Here&apos;s your ID!</h1>
-        <div className="w-[190px] h-[12px] bg-primary absolute -right-2 bottom-1" />
+        <div className="w-[190px] h-[12px] bg-primary-100 absolute -right-2 bottom-1" />
       </div>
 
       <div ref={cardRef}>
@@ -64,13 +71,27 @@ const Member = () => {
         </div>
       </div>
 
-      <button
-        type="button"
-        onClick={handleDownload}
-        className="self-end mt-4 hover:underline outline-none"
-      >
-        Download Image
-      </button>
+      <div className="hidden">
+        <Output ref={printRef} data={data} />
+      </div>
+
+      <div className="self-end text-xl mt-2 space-x-2">
+        <button
+          type="button"
+          onClick={handlePrint}
+          className="rounded p-2 bg-primary-200"
+        >
+          <HiPrinter />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleDownload}
+          className="rounded p-2 bg-primary-100"
+        >
+          <HiDownload />
+        </button>
+      </div>
     </section>
   );
 };

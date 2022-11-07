@@ -31,7 +31,7 @@ const Home: NextPage = () => {
           placeholder="Student ID"
         />
 
-        <button type="submit" className="fill-btn bg-primary flex-none">
+        <button type="submit" className="fill-btn bg-primary-100 flex-none">
           Generate ID
         </button>
       </form>
