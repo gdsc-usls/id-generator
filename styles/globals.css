@@ -29,8 +29,8 @@
 }
 
 @layer components {
-  .primary-btn {
-    @apply bg-primary rounded-md px-6 flex-none py-3 outline-none hover:bg-primary/90 transition-colors;
+  .blue-btn {
+    @apply bg-primary-100 rounded-md px-6 flex-none py-3 outline-none hover:bg-primary/90 transition-colors;
   }
 
   .input {

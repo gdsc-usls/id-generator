@@ -6,11 +6,11 @@ export const Card = ({ data }: { data?: Member }) => {
 
   return (
     <div className="relative">
-      <div className="absolute left-0 right-0 top-32 mx-auto text-center text-[#676c72]">
+      <div className="absolute left-0 right-0 top-32 md:top-36 mx-auto text-center text-[#676c72]">
         <p className="text-3xl font-bold">{data?.firstName}</p>
         <p className="text-xl">{data?.lastName}</p>
 
-        <div className="mt-12 text">
+        <div className="mt-12 text md:text-lg tracking-wide">
           {position.map((p) => (
             <p key={p}>{p}</p>
           ))}

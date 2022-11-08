@@ -21,6 +21,7 @@
     "react-firebase-hooks": "^5.0.3",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.4.0",
+    "react-to-print": "^2.14.8",
     "zod": "^3.19.1"
   },
   "devDependencies": {
