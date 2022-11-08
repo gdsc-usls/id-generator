@@ -29,14 +29,14 @@ const Member = () => {
     toPng(cardRef.current, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "gdsc_id.png";
+        link.download = `gdsc_id_${query.id}.png`;
         link.href = dataUrl;
         link.click();
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [cardRef]);
+  }, [cardRef, query.id]);
 
   if (loading) {
     return (
@@ -60,15 +60,9 @@ const Member = () => {
       </div>
 
       <div ref={cardRef}>
-        <div className="hidden lg:block">
-          <Hover perspective={900}>
-            <Card data={data} />
-          </Hover>
-        </div>
-
-        <div className="lg:hidden">
+        <Hover perspective={900}>
           <Card data={data} />
-        </div>
+        </Hover>
       </div>
 
       <div className="hidden">
