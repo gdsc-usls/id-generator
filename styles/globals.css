@@ -30,7 +30,7 @@
 
 @layer components {
   .blue-btn {
-    @apply bg-primary-100 rounded-md px-6 flex-none py-3 outline-none hover:bg-primary/90 transition-colors;
+    @apply bg-primary-100 rounded-md px-6 flex-none py-3 outline-none hover:bg-primary-100/90 transition-colors;
   }
 
   .input {

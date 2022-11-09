@@ -135,7 +135,7 @@ const Manage: NextPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className="primary-btn">
+        <button type="submit" className="blue-btn">
           Login
         </button>
       </form>
@@ -247,7 +247,7 @@ const Manage: NextPage = () => {
         />
       </div>
 
-      <button type="submit" className="primary-btn self-end mt-4">
+      <button type="submit" className="blue-btn self-end mt-4">
         Add Member
       </button>
 
@@ -264,7 +264,7 @@ const Manage: NextPage = () => {
       <button
         type="button"
         onClick={handlePreview}
-        className="primary-btn self-end mt-4"
+        className="blue-btn self-end mt-4"
       >
         Preview Data
       </button>
