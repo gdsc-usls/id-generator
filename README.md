@@ -1,6 +1,6 @@
 ## About
 
-[gdsc-usls-id](https://github.com/gdsc-usls/gdsc-usls-id) is an open-source project of [Google Developer Student Clubs - USLS](https://www.facebook.com/dsc.usls) that generates an ID badge for the official club members with their corresponding position.
+An open-source project of [Google Developer Student Clubs - USLS](https://www.facebook.com/dsc.usls) that generates an ID badge for the official club members with their corresponding position.
 
 ### Preview
 
